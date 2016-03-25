@@ -220,19 +220,19 @@ faced with the ``inverse problem'' of estimating parameters from data
 relative to a statistical model of the phenomenon at hand and the
 measurement process.  Examples of application areas include
 drug-disease response in pharmacology/toxicology
-\cite{peterson-rigg:2010, gelman-et-al:1996}, thermal conductivity and
+\citep{peterson-rigg:2010, gelman-et-al:1996}, thermal conductivity and
 heat transfer for rocketry, airflow analysis over control surfaces in
-in aeronautical engineering \cite{alifanov:2012}, facial recognition
-in computer vision \cite{aubert-kornprobst:2006, bovik:2010}, dynamics
+in aeronautical engineering \citep{alifanov:2012}, facial recognition
+in computer vision \citep{aubert-kornprobst:2006, bovik:2010}, dynamics
 of gaseous bodies with respect to background magnetic fields in
-astrophysics \cite{tobias-et-al:2011}, population diffusion and
-spatial dynamics in ecology \cite{gopalsamy:2013}, continuous-time
-asset pricing in econometrics \cite{johannes-polson:2010}, soil-carbon
-respiration in biogeochemistry \cite{manzoni-porporato:2009}, cellular
-regulation in systems biology \cite{baron-gastonguay:2015,
+astrophysics \citep{tobias-et-al:2011}, population diffusion and
+spatial dynamics in ecology \citep{gopalsamy:2013}, continuous-time
+asset pricing in econometrics \citep{johannes-polson:2010}, soil-carbon
+respiration in biogeochemistry \citep{manzoni-porporato:2009}, cellular
+regulation in systems biology \citep{baron-gastonguay:2015,
   baron-et-al:2013, leclerc-et-al:2016}, fatigue in land and sea
-combat \cite{rubio-campillo:2016}, and pressure changes and oceanic
-flow in fluid dynamics for meteorology \cite{charney-phillips:1953},
+combat \citep{rubio-campillo:2016}, and pressure changes and oceanic
+flow in fluid dynamics for meteorology \citep{charney-phillips:1953},
 to name but a few.
 
 Inference for ODEs can be challenging, both from a statistical
@@ -251,19 +251,19 @@ parameter estimation, prediction, uncertainty quantification, and
 hence decision-making under uncertainty, are intractable analytically
 and notoriously difficult to solve numerically.
 
-Stan \cite{carpenter-et-al:2016, stan-development-team:2016,
+Stan \citep{carpenter-et-al:2016, stan-development-team:2016,
   mcelreath:2016} is a widely used, open-source, probabilistic
 programming language and Bayesian inference engine.  Stan currently
 provides state-of-the-art Bayesian inference algorithms for inverse
 problems based on gradients.  Full Bayesian inference is performed
 exactly (up to some specified precision) using Hamiltonian Monte Carlo
-(HMC, \cite{neal:2011}), a Markov chain Monte Carlo (MCMC) method for
+(HMC, \citep{neal:2011}), a Markov chain Monte Carlo (MCMC) method for
 sampling from the posterior and computing expectations; approximate
 algorithms, which can provide exploratory analysis and even useful
 estimates at orders of magitude greater throughput, include mean-field
 and full-rank variational inference (VI,
-\cite{wainwright-jordan:2008}) and simple optimization-based Laplace
-approximation \cite{gelman-et-al:2013}.  Stan includes a simple
+\citep{wainwright-jordan:2008}) and simple optimization-based Laplace
+approximation \citep{gelman-et-al:2013}.  Stan includes a simple
 Runge-Kutta initial-value solver for ordinary differential equations.
 % , but the solver is not optimized and does not support stiff
 % differential equations, and the interface provided by Stan is at a
@@ -280,7 +280,7 @@ Bayes through variational inference and maximum marginal likelihood.
 Stan provides the means to create coupled systems of differential
 equations through nested automatic differentiation, which provide full
 sensitivities (derivatives of solutions with respect to parameters)
-\cite{lee-hovland:2002,serban-hindmarsh:2003,carpenter-et-al:2015} and
+\citep{lee-hovland:2002,serban-hindmarsh:2003,carpenter-et-al:2015} and
 thus allow Stan's derivative-based inference engines to be used with
 statistical models involving non-linear differential equations.  The
 key for our proposed work will be calculating the sparse, structured
@@ -310,7 +310,7 @@ controls, increased granularity of spatio-temporal modeling,
 hierarchical modeling of (sub)populations), and speed of solvers by an
 order of magnitude or more over the state of the art, a target we
 believe is realistic given Stan's performance with simple non-stiff
-ODE solvers \cite{weber-et-al:2014}.  The result will be an even more
+ODE solvers \citep{weber-et-al:2014}.  The result will be an even more
 flexible Bayesian statistics platform that supports analysis of
 heterogeneous collections of data conditioned on models of great
 stochastic and deterministic complexity and quantitative prior
@@ -433,10 +433,10 @@ applications such as NONMEM, Monolix and Phoenix offer
 \end{itemize}
 
 Stan is in part modeled on the previous state-of-the-art tool for
-Bayesian inference via MCMC, WinBUGS \cite{lunn-et-al:2000}, which
+Bayesian inference via MCMC, WinBUGS \citep{lunn-et-al:2000}, which
 contains a module PKBugs for ODE solving, and for which we have the
 BUGSModelLibrary of sample models for testing
-\cite{gastonguay-et-al:2010}.  WinBUGS and other Gibbs-sampling based
+\citep{gastonguay-et-al:2010}.  WinBUGS and other Gibbs-sampling based
 approaches provide
 
 \begin{itemize}
@@ -718,7 +718,8 @@ be developed.
   Section 5.7).}
 
 % Rename the bibliography section.
-\bibliographystyle{unsrt}
+\bibliographystyle{nihunsrtnat}
+%\bibliographystyle{plainnat}
 \renewcommand{\refname}{Literature Cited}
 \bibliography{nih}
 
