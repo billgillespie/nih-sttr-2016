@@ -7,6 +7,11 @@
 % Use 1/2-inch margins.
 \usepackage[margin=0.5in]{geometry}
 
+\usepackage{natbib}
+
+\usepackage{hyperref}
+\newcommand{\myurl}[1]{\href{#1}{{\tt #1}}}%{{\tt #1}} % 
+
 % No page numbers.
 \pagestyle{empty}
 
@@ -15,7 +20,7 @@
 %\renewcommand{\instructions}[1]{{\scriptsize \sc #1}}
 
 % The title has an 81-character maximum.
-\title{INSERT TITLE HERE}
+\title{Fast and flexible Bayesian platform for pharmacometric analysis}
 
 \author{MY NAME\\
 MY AFFILIATION}
@@ -25,8 +30,8 @@ MY AFFILIATION}
 \maketitle
 
 \begin{center}
-An NIH R01 proposal, submitted in response to \\
-{\em PAR-XX-XXX: INSERT TITLE OF PAR HERE}.
+An NIH STTR (R41) proposal, submitted in response to \\
+{\em PAR-13-157: Early Stage Development of Technologies in Biomedical Computing, Informatics, and Big Data Science}.
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -38,13 +43,14 @@ INSERT DATE HERE\\[2ex]
 \noindent
 Dear NIH:\\[1ex]
 
-I am submitting a grant proposal entitled ``INSERT TITLE HERE.''
+I am submitting a grant proposal entitled ``Fast and flexible Bayesian platform for pharmacometric analysis.''
 
 \begin{itemize}
 \item Please assign this application to the National Institute for
-  FIXME
-\item Please assign this application to the following study section:
-  FIXME
+  General Medical Sciences
+\item Please assign this application to the following study section
+  Modeling and Analysis of Biological Systems Study Section [MABS] or
+  the SBIR/STTR study section Small Business: Computational, Modeling, and Biodata Management [IMST (14)].
 \end{itemize}
 I have discussed this application with INSERT NAME OF PROGRAM OFFICER
 at INSERT NAME OF INSTITUTE.  They recommended the above two
@@ -94,7 +100,7 @@ INSERT AFFILIATION
     succinct and use plain language that can be understood by a
     general, lay audience.}
 
-2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \section*{Specific aims}
 
@@ -106,6 +112,73 @@ INSERT AFFILIATION
     novel design, solve a specific problem, challenge an existing
     paradigm or clinical practice, address a critical barrier to
     progress in the field, or develop new technology.}
+
+The overall objective of this proposal is to develop additional
+functionality within Stan to support pharmacometric applications. This
+includes the addition of functions for implementing compartmental PK/PD
+models and schedules of dosing and other discrete events. The
+resulting enhancements to Stan will also support other applications
+that would benefit from Bayesian data analysis using complex models
+requiring numerical solution of systems of ordinary differential or
+algebraic equations.
+
+\subsection*{Technical Objectives}
+
+The combined scope of the proposed Phase I and Phase II work will
+result in a pharmacometric modeling and simulation platform that is
+more flexible and that provides order(s) of magnitude more scalable
+and more efficient Bayesian computation than available tools. This
+will be accomplished by extending the capabilities of Stan to include
+support for pharmacometric models. The goal is a software tool that
+combines 
+
+\begin{itemize}
+\item numerical solution of systems of ordinary differential equations
+  (ODEs),
+\item numerical solution of systems of algebraic equations,
+\item Bayesian methodology that permits integration of new data with
+  prior information,
+\item efficient computation of posterior densities and expectations
+  with respect to them (e.g., for event probability estimation and
+  prediction),
+\item a flexible model specification language that permits
+\begin{itemize}
+\item probabilistic models that allow multiple levels and sources of
+  variability and uncertainty,
+\item implementation of complex models that combine submodels with
+  different stochastic hierarchies. E.g., translational models that
+  combine linked submodels for simultaneous analysis of clinical,
+  animal and in vitro experiments,
+\item model calculations that depend on a
+  potentially complicated sequence of events that affect the model
+  predictions (e.g., multiple dosing, changes in non-drug treatments,
+  time-varying model parameters).
+\end{itemize}
+\end{itemize}
+
+
+\subsection*{Specific Aims for Phase I}
+
+\begin{itemize}
+\item Detailed planning and feasibility assessment for development of
+  a suite of Stan enhancements to support pharmacometric modeling and
+  simulation
+\item Development of Stan components for non-steady-state calculations
+  for compartmental PK/PD models
+\item Handling of discrete events, e.g., bolus or constant rate input,
+  piecewise constant parameters,
+\item Implementation of functions for analytic solutions for standard
+  linear one and two compartment PK models with or without first order
+  absorption.
+\item Functions that integrate numerical solution of ODEs with the
+  event handler
+\item Non-stiff ODEs solved with Adams-Moulton or Runge-Kutta methods
+\item Stiff ODEs solved with Backward Differentiation Formulas (BDF)
+\item R package for PK/PD data handling and model implementation.
+\item Linear ODEs solved semi-analytically using matrix exponentials
+\item Function that integrates numerical solution of linear ODEs
+  with the event handler
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,6 +212,181 @@ INSERT AFFILIATION
     methods, technologies, treatments, services, or preventative
     interventions that drive this field?}
 
+Nonlinear ordinary differential equations (ODEs) are widely used for modeling
+the dynamics of complex systems in the physical, biological, and
+social sciences, as well as across the engineering disciplines. Given
+(noisy) measurements of system inputs and outputs, researchers are
+faced with the ``inverse problem'' of estimating parameters from data
+relative to a statistical model of the phenomenon at hand and the
+measurement process.  Examples of application areas include
+drug-disease response in pharmacology/toxicology
+\cite{peterson-rigg:2010, gelman-et-al:1996}, thermal conductivity and
+heat transfer for rocketry, airflow analysis over control surfaces in
+in aeronautical engineering \cite{alifanov:2012}, facial recognition
+in computer vision \cite{aubert-kornprobst:2006, bovik:2010}, dynamics
+of gaseous bodies with respect to background magnetic fields in
+astrophysics \cite{tobias-et-al:2011}, population diffusion and
+spatial dynamics in ecology \cite{gopalsamy:2013}, continuous-time
+asset pricing in econometrics \cite{johannes-polson:2010}, soil-carbon
+respiration in biogeochemistry \cite{manzoni-porporato:2009}, cellular
+regulation in systems biology \cite{baron-gastonguay:2015,
+  baron-et-al:2013, leclerc-et-al:2016}, fatigue in land and sea
+combat \cite{rubio-campillo:2016}, and pressure changes and oceanic
+flow in fluid dynamics for meteorology \cite{charney-phillips:1953},
+to name but a few.
+
+Inference for ODEs can be challenging, both from a statistical
+perspective (the solution space of a nonlinear inverse problem can
+have a complex geometric structure, far from the Gaussian
+distributions used in standard asymptotic inference) and also
+computationally: solving the inverse problem in a probabilistic sense
+requires tracing out the space of parameter values that are consistent
+with data and prior information.  Even the simplest ODEs generally do
+not admit closed-form solutions, hence computational approaches are
+necessarily iterative, requiring a search through parameter space.
+Such a search is most effectively performed using gradients, which in
+turn raises the challenging problem of computing gradients of
+differential equation solutions. In this setting, problems of
+parameter estimation, prediction, uncertainty quantification, and
+hence decision-making under uncertainty, are intractable analytically
+and notoriously difficult to solve numerically.
+
+Stan \cite{carpenter-et-al:2016, stan-development-team:2016,
+  mcelreath:2016} is a widely used, open-source, probabilistic
+programming language and Bayesian inference engine.  Stan currently
+provides state-of-the-art Bayesian inference algorithms for inverse
+problems based on gradients.  Full Bayesian inference is performed
+exactly (up to some specified precision) using Hamiltonian Monte Carlo
+(HMC, \cite{neal:2011}), a Markov chain Monte Carlo (MCMC) method for
+sampling from the posterior and computing expectations; approximate
+algorithms, which can provide exploratory analysis and even useful
+estimates at orders of magitude greater throughput, include mean-field
+and full-rank variational inference (VI,
+\cite{wainwright-jordan:2008}) and simple optimization-based Laplace
+approximation \cite{gelman-et-al:2013}.  Stan includes a simple
+Runge-Kutta initial-value solver for ordinary differential equations.
+% , but the solver is not optimized and does not support stiff
+% differential equations, and the interface provided by Stan is at a
+% very low level of core vector operations.
+
+We propose to extend Stan to incorporate state-of-the-art solvers for
+ordinary differential equations and differential algebraic equations
+into its inference procedures.  Based on the performance of our
+non-stiff solvers, we believe we can achieve an order of magnitude or
+more speedup over the existing state-of-the-art, due to Stan's
+built-in efficient automatic differentiation library and efficient
+samplers for full Bayesian inference and optimizers for approximation
+Bayes through variational inference and maximum marginal likelihood.
+Stan provides the means to create coupled systems of differential
+equations through nested automatic differentiation, which provide full
+sensitivities (derivatives of solutions with respect to parameters)
+\cite{lee-hovland:2002,serban-hindmarsh:2003,carpenter-et-al:2015} and
+thus allow Stan's derivative-based inference engines to be used with
+statistical models involving non-linear differential equations.  The
+key for our proposed work will be calculating the sparse, structured
+Jacobians of these coupled systems to permit solutions of stiff
+systems of equations (typically characterized by varying time scales
+among the components, such as the varying absorption, distribution,
+metabolism, and excretion of toxins in bone, fat, blood, and organs
+such as kidneys).
+
+We will also extend Stan to deal with events arising from external
+inputs such as discrete (bolus) dosing in pharmacology or leaf-litter
+decomposition by enzymes in soil-carbon modeling. These represent
+general improvements in the Stan language which should serve specific
+customers in the present commercial development.  In that way, we
+propose at Columbia University to serve the general science and
+engineering community with improvements in open-source software while
+at the same time at Metrum producing a product and services for which
+there is a strong market.
+
+For concreteness, we will evaluate the tools produced using
+pharmacometric data with a range of sophisticated statistical and
+mathematical models in common use \citep[e.g.,][]{ette-williams:2007,
+  schmidt-derendorf:2014}. Our goal is to extend the size of data
+sets, sophistication of models (e.g., varying effects by patient,
+missing data, meta-analysis of multiple drug studies and placebo
+controls, increased granularity of spatio-temporal modeling,
+hierarchical modeling of (sub)populations), and speed of solvers by an
+order of magnitude or more over the state of the art, a target we
+believe is realistic given Stan's performance with simple non-stiff
+ODE solvers \cite{weber-et-al:2014}.  The result will be an even more
+flexible Bayesian statistics platform that supports analysis of
+heterogeneous collections of data conditioned on models of great
+stochastic and deterministic complexity and quantitative prior
+knowledge, leading to better calibrated and sharper (more precise)
+predictions \citep[see, e.g.,][]{gneiting-et-al:2007}.
+
+\subsection*{Background}
+
+Modern research in science and engineering is characterized by big,
+messy data. Scientific datasets are not just bigger in that there are
+more instances of the same thing---a mere increase in sample size
+would make our job as data analysts easier. Rather, there is more {\em
+  breadth} and {\em complexity} to the data: more subgroups,
+locations, or time granularity than is currently being modeled, more
+partial and noisy measurements that cannot easily be incorporated into
+standard models, more related studies available for meta-analysis and
+prior formulation, more information on the physical mechanisms of
+measurement, more information on the population units being measured,
+and more fine-grained information on the predictions desired.
+
+Consequently, in order to utilize big data we need complementary big
+models that can, for example, adjust the data to match sample to
+population, to match treatment to control groups in causal inference,
+or learn about interactions and variation and make individualized
+predictions rather than be limited to averages.  Once we have big
+models we inevitably have multiple levels of uncertainty and
+variation, which can be studied using Bayesian inference, as is
+demonstrated in a large literature of applied statistics, including
+our own books and research articles. The big computational challenge
+is scalability: developing algorithms and implementations that work
+well and do not require too much storage and computation time as
+datasets become larger and the amount of predictive information
+increases.
+
+\subsection*{Modeling and simulation in drug research and development}
+
+Pharmacometric data typically consists of longitudinal measurements
+gathered from different sources such as drug concentrations in blood
+plasma and pharmacological effects often resulting from a sequence of
+treatment events, e.g., drug doses. Mathematical modeling and
+simulation facilitates decision-making and risk-benefit assessment by
+drug developers regulators, health care providers, and patients.
+
+Mathematical models describing measurements over time are often
+compartmental models formulated as systems of first order ordinary
+differential equations (ODEs). These models often also involve a
+hierarchy of random effects required to describe sources of
+variability, e.g., inter-individual, inter-occasion and residual
+variation. Highly complex systems pharmacology models describe
+physiologic, biochemical, and pharmacological processes at multiple
+scales (molecular, cellular, tissue, organ, organism and population)
+\citep[e.g.,][]{baron-et-al:2013, peterson-rigg:2010}. Even relatively
+simple compartmental models used for pharmacokinetic data analysis
+require solution of systems of ODEs often by computationally demanding
+numerical methods.
+
+Although there are well-developed methods for solving continuous ODEs
+given initial values, tools for inference in models that incorporate
+ODEs as part of the statistical model are less-developed. Discrete
+events such as bolus doses into a model compartment induce
+discontinuities in the ODEs or their solution, which adds additional
+computational complexity. We propose to evaluate and extend software
+tools to incorporate better methods for solving ODEs and handle
+discrete events.
+
+Systems pharmacology models are very useful for applications in
+translational drug research--predictions of drug disposition and
+effects in humans based on preclinical research. The development of
+such models is highly challenging and resource intensive. It requires
+integration of large amounts of prior biochemical and physiological
+knowledge with a heterogeneous collection of data from in vitro,
+animal and human studies. Bayesian methods provide a rational approach
+to the model-based analysis of data conditioned on such complex models
+and quantitative problem-specific knowledge about the model parameters
+\citep[e.g.,][]{gelman-et-al:1996, leclerc-et-al:2016}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Innovation}
 
@@ -160,6 +408,69 @@ INSERT AFFILIATION
     improvement, or new application of theoretical concepts,
     approaches or methodologies, instrumentation, or interventions
     proposed? }
+
+\subsection*{Comparison to Existing Tools}\label{existing}
+
+Various existing software tools address subsets of those features, but
+none address them all. Shortcomings of currently available software
+are outlined below. Commercial tools that specialize in pharmacometric
+applications such as NONMEM, Monolix and Phoenix offer
+
+\begin{itemize}
+\item Good support for compartmental models based on ODEs and for
+  typical schedules of dosing and other discrete events.
+\item Including ODE solvers specialized for stiff, non-stiff and
+  linear ODEs
+\item Limited flexibility w.r.t. probabilistic model components.
+\item NONMEM \& Monolix employ relatively inefficient MCMC algorithms
+  for Bayesian analyses.
+\item Phoenix provides no support for Bayesian analysis.
+\item Stochastic structure of supported models is limited:
+\item Only Normal-Wishart priors
+\item Only normally distributed variability (except for residual
+  variability)
+\item Cannot combine submodels with different stochastic hierarchies
+\end{itemize}
+
+Stan is in part modeled on the previous state-of-the-art tool for
+Bayesian inference via MCMC, WinBUGS \cite{lunn-et-al:2000}, which
+contains a module PKBugs for ODE solving, and for which we have the
+BUGSModelLibrary of sample models for testing
+\cite{gastonguay-et-al:2010}.  WinBUGS and other Gibbs-sampling based
+approaches provide
+
+\begin{itemize}
+\item inefficient MCMC algorithms compared to Stan, which is
+\begin{itemize}
+\item  two orders of magnitude more scalable, and
+\item  between two times faster and orders of magnitude faster,
+  with greater speedups in more challenging problems.
+\end{itemize}
+\end{itemize}
+
+\subsection*{Advantages of Stan}
+
+In contrast, Stan provides
+
+\begin{itemize}
+\item more efficient posterior simulation algorithms (HMC/NUTS) than
+  other pharmacometrics and general purpose Bayesian analysis tools,
+\item approximate Bayesian (ADVI) and optimization methods,
+\item numerical solvers for non-stiff ODEs,
+\item only limited, primitives-based support for pharmacometrics models,
+\item no tools for handling typical schedules of dosing and other discrete events,
+\item a single simple ODE solver (no stiff solvers, no efficient
+  solvers for linear ODEs), and
+\item no tools for solving nonlinear algebraic equations, which are
+  required for steady-state solutions for ODES, a commonly encountered
+  challenge in pharmacometric analyses.
+\end{itemize}
+
+These properties of Stan make it a highly attractive general purpose
+program for Bayesian data analysis and arguably the best available
+platform upon which to build additional features. As outlined above,
+Stan lacks some important capabilities required for many
+pharmacometric applications.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Approach}
@@ -192,11 +503,191 @@ INSERT AFFILIATION
     is in the early stages of development, will the strategy establish
     feasibility and will particularly risky aspects be managed?}
 
-\subsubsection*{Preliminary studies}
 
-\subsubsection*{Specific Aim 1:}
+\subsection{Phase I Base}
 
-\subsubsection*{Specific Aim 2:}
+Phase I Base will be limited to (1) detailed planning and feasibility
+assessment for development of a suite of Stan enhancements to support
+pharmacometric modeling and simulation, and (2) developing an initial
+subset of the planned components.
+
+\subsubsection{Planning and feasibility assessment}
+
+The first stage of the work will be to develop more detailed
+functional specifications for Stan components that fulfill the
+following general functional requirements: Functions that calculate
+the amount in each compartment of a compartmental PK/PD model at a
+specified time given the amount in those compartments at a previous
+time, Calculations based on analytic solutions for the standard linear
+one and two compartment PK models with or without first order
+absorption. Calculations based on numerical solution of a
+user-specified system of ordinary differential equations (ODEs).
+Specific functions will be required for different categories of ODEs
+\citep{byrne-hindmarsh:1975}:
+
+\begin{itemize}
+\item Stiff ODEs solved numerically via methods based on backward
+  differentiation formulas (BDF).
+\item Non-stiff differential equations solved numerically via
+  Adams-Moulton or Runge-Kutta methods.
+\item Linear ODEs solved semi-analytically via matrix exponential methods.
+\item Functions that calculate the amount in each compartment of a
+  compartmental PK/PD model at a vector of specified times given a
+  schedule of discrete events, e.g., bolus or constant rate doses and
+  piecewise constant parameters. These functions will be developed by
+  integrating the functions for calculating the compartment amounts at
+  a single time with software for handling the event schedule. 
+\item One or more functions for numerical calculation of the solution
+  to a system of nonlinear algebraic equations.
+\item Functions that calculate the amount in each compartment of a
+  compartmental PK/PD model at a vector of specified times under
+  quasi-steady-state conditions resulting from a periodic input, e.g.,
+  repeated administration of equal doses at equally spaced time
+  intervals. This requires numerical solution of both ODEs and
+  algebraic equations in order to solve a boundary value problem.
+\item Integral with the development of the above functional
+  specifications will be assessing the feasibility of implementing
+  them within Stan. Feasibility assessment may also extend to
+  consideration of additional functionality that may be desirable for
+  pharmacometric and other scientific modeling applications, e.g.,
+  solutions of delay differential equations, stochastic differential
+  equations, differential algebraic equations and partial differential
+  equations.
+\end{itemize}
+
+\subsubsection{Development of Stan components for non-steady-state
+  calculations for compartmental PK/PD models} 
+
+The software developed in this project will be written in C++. The C++
+code will result in new functions in the Stan model specification
+language. Subject to revision based on the planning and feasibility
+effort described above, C++ code consistent with Stan architecture
+will be developed for the following tasks. A function will be
+constructed that calculates the solution of a system of ODEs at a
+specified sequence of times given a schedule of discrete events, e.g.,
+bolus or constant rate input or piecewise constant parameters. This
+will be a general event handler that calls another function that
+returns the solution to a specific ODE system at a single time given
+initial values, i.e., implementing a recursive approach in which the
+ODEs are solved over each continuous interval given initial conditions
+for that interval calculated from the solution for the prior
+interval. Functions for calculating analytic solutions for standard
+linear one and two compartment PK models with or without first order
+absorption will be created.  A function for calculating numerical
+solutions of non-stiff ODEs using an Adams-Moulton method will also be
+implemented. This will probably employ code from the Sundials
+collection \citep{hindmarsh-et-al:2005}. Stan functions have already
+been developed for calculating numerical solutions of ODEs using
+Backward Differentiation Formulas (BDF) for stiff ODEs and Runge-Kutta
+methods for non-stiff ODEs.
+
+Additional C++ code will be written that integrates the ODE solution
+functions with the event handler and exposes the results as functions
+in the Stan language. In addition a general purpose ODE solver
+function using the Adams-Moulton method will be added to Stan. The function
+will be consistent with the current Stan implementations of the
+Runge-Kutta and BDF solvers.
+
+\subsubsection{Software development practices}
+
+Stan is developed using current best-practices for production software
+development.  These rely on a combination of test-driven interface
+design, established coding standards, thorough code reviews,
+exhaustive unit tests, and ongoing continous integration testing
+on all supported platforms.
+
+Stan's software distributions, including the source version control
+repositories and the official releases, along with the Wiki used for
+design documents, and the issue tracker for feature requests and bug
+reports, are hosted by GitHub.%
+%
+\footnote{\myurl{http://github.com/}}
+%
+The entire distribution and the in-development code are open access,
+and available through the public-facing GitHub web site.  All work is
+carried out in branches and submitted to be merged with the
+development branch through pull requests which are openly code
+reviewed.  All behavior must be thoroughly tested, both with unit
+tests for the local functionality and integration tests to guard
+against breaking things end-to-end with local changes.
+
+
+\subsubsection{User-facing changes}
+
+Stan has over 1500 registered users on its users list and has seen
+over 200 academic publications across science, engineering, business,
+and sports.  The results of this project will involve extensive
+additions to the user-facing documentation. This includes
+interface-by-interface walk-through tutorials and example models. Stan
+is increasingly being included in third-party textbooks, and we strive
+for backward compatibility so that these references are not made
+obsolete. Stan also has a dedicated web site, which is also managed
+through GitHub.
+
+\subsubsection{Collaboration plan}
+
+The project will be a close collaboration between personnel at Metrum
+Research Group and the Stan development team based at Columbia
+University. Metrum scientists provide expertise in pharmacometrics. In
+most cases they will be responsible for initial functional
+specifications and will often develop prototype code for the desired
+functionality in Stan. The Stan team will collaborate with Metrum
+scientists to refine the functional specifications. They will adapt or
+replace the prototype code to develop Stan code suitable for inclusion
+in publicly released versions of Stan. Part of that process will
+include rigorous testing to assure the code functions as intended.
+
+The main coordination mechanisms we use are GitHub for version control
+and code review, Jenkins for continuous integration testing, weekly
+Google+ hangouts for online meetings as well as additional meetings as
+needed.  In this particular case, we are within public transportation
+distance of each other, which will facilitate regular face-to-face
+meetings with whiteboards.
+
+
+\subsection{Phase I Option}
+
+\subsubsection{R package development}
+
+R (\url{https://www.r-project.org/}) is a statistics software package widely used by
+pharmacometricians and other scientific fields. Users can develop
+additional R components and make them available as easily installed
+packages. An R package will be developed to provide a more
+familiar and user-friendly tool for the following tasks:
+
+\begin{itemize}
+\item Translation of data sets formatted for NONMEM
+  (\url{http://www.iconplc.com/innovation/solutions/nonmem/}) into
+  Stan-compatible formats
+\item Model specification
+\item Model execution using either the rstan or cmdstan interfaces to
+  Stan
+\item Tabular and graphical analyses of Stan output specialized for
+  pharmacometric applications
+\item The component functions will be programmed in the R language.
+  They will be made available to the community via open distribution
+  sites, e.g., CRAN (\url{https://cran.r-project.org/}) or R-Forge
+  (\url{https://r-forge.r-project.org/}).
+\end{itemize}
+
+\subsubsection{Development of additional Stan components for linear compartmental PK/PD models}
+
+A large fraction of pharmacometric models are based on systems of
+linear ODEs with constant coefficients. Such models can be solved
+semi-analytically via a matrix exponential approach. A matrix
+exponential method can solve applicable ODEs much more rapidly than
+the multi-step numerical methods implemented as part of Phase I Base.
+A Stan function for calculating non-steady-state and steady-state
+solutions of linear ODEs using matrix exponentials will be developed.
+The specific computational approach will be identified during the
+Phase I planning. A variety of algorithms have been proposed
+\citep{moler-vanloan:2003} and implemented in various languages, e.g.,
+FORTRAN \citep{sidje:1998} and C++
+(\url{https://people.sc.fsu.edu/~jburkardt/cpp_src/matrix_exponential/matrix_exponential.html}).
+
+As with the ODE solvers described in section 3.1.2, a Stan function
+integrating the matrix exponential solver with the event handler will
+be developed.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
@@ -229,11 +720,19 @@ INSERT AFFILIATION
 % Rename the bibliography section.
 \bibliographystyle{unsrt}
 \renewcommand{\refname}{Literature Cited}
-\bibliography{refs}
+\bibliography{nih}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\section*{Resource sharing plan}
+\section*{Consortium/contractual arrangements}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section*{Letters of support}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section*{Resource sharing plan(s)}
 
 \subsection*{Data sharing plan}
 
@@ -250,7 +749,7 @@ INSERT AFFILIATION
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\section*{Resources}
+\section*{Facilities \& Other Resources}
 
 \instructions{ Instructions: This information is used to assess the
     capability of the organizational resources available to perform
@@ -285,6 +784,39 @@ INSERT AFFILIATION
 
 \paragraph{Other}
 
-\paragraph{Major Equipment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section*{Equipment}
+
+\subsection*{Metrum Research Group}
+
+Since the primary focus of this project is computer software and
+development, the equipment requirements are primarily suitable
+computer hardware and software resources. All Metrum scientists are
+equipped with a recent model Apple MacBook Pro. Most production
+computation is done on Amazon Web Services (AWS) cloud compute servers
+using the Ubuntu operating system. The software required for the
+proposed project is installed on the standard machine image
+configuration used by Metrum, e.g., Gnu C++ compiler, R, Gnu Fortran,
+NONMEM, LaTeX, Stan, git and subversion version control software.
+
+\subsection*{Columbia University}
+
+At Columbia University, all participants are equipped with recent
+Apple Macbook Pro personal computers.  The Stan project has three
+dedicated servers with 64GB and 8 cores each, one for each of Mac OS
+X, Linux, and Windows, along with two dedicated workstations for web
+hosting and remote debugging on Windows and Linux.  The Stan team has
+access to two Linux clusters, one shared by statistics and astronomy
+with 384 cores, and one shared by 24 departments with 2672 CPU cores,
+35 of which are high end 256-gigabyte memory nodes, and 45,000+ NVIDIA
+K40 and K20 GPU cores.  All of the software required for individual
+computers for this project (see the list above) is free and open
+source.  Source version control, issue trackers, and project web
+servers are provided by GitHub, mailing lists for user and developer
+groups is supplied by Google, and continuous integration for the
+interfaces by Travis;  all of these services are free to open-source
+projects.
+
 
 \end{document}
