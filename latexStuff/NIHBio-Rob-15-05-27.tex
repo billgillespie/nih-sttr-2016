@@ -1,0 +1,547 @@
+% -*-LATEX-*-
+% Document name: 
+% Creator: Rob MacLeod [macleod@cvrti.utah.edu]
+% Creation Date: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt]{article}
+\usepackage{times}
+\usepackage[super]{cite}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{bibunits}
+\usepackage{hyperref}
+\renewcommand\rmdefault{phv}
+\textheight 9.6in
+\textwidth 7.2in
+\topmargin -.95in
+\oddsidemargin -.45in
+\pagestyle{fancy}
+\headsep .4in
+\footskip 25pt
+\headheight 15pt
+\setlength{\parskip}{\smallskipamount}
+% Pick the first one for the final submission, the second for drafts
+\pagestyle{empty}
+%\pagestyle{plain}
+
+\newcommand{\eg}{{\em e.g.,}}
+\newcommand{\ie}{{\em i.e.,}}
+\newcommand{\etc}{{\em etc.,}}
+\newcommand{\etal}{{\em et al.}}
+\newcommand{\degrees}{{$^{\circ}$}}
+\newcommand{\splitline}{\begin{center}\rule{\columnwidth}{.7mm}\end
+{center}}
+
+% Define some variables for this particular edition
+\newcommand{\myname}{Robert S. MacLeod}
+\newcommand{\eraname}{rsmacleod}
+\newcommand{\mytitle}{Professor of Bioengineering }
+%\setcounter{page}{1}
+%\newcommand{\totalpubs}{110}
+
+% Header content
+% \renewcommand{\headrulewidth}{0pt}
+% \lhead{\hspace{.75in}{\scriptsize\sf Pricipal Investigator/Program 
+%     Director(Last, First, Middle): }
+% \hspace{.1in}\PI}
+% %\rhead{Core \thechapter}
+% %\lfoot{{\small\sf  PHS 398/2590 (Rev.~09/04)}}
+% \cfoot{{\scriptsize Page: \underline{\hspace{1em}\thepage\hspace{1em}}}}
+% %\rfoot{{\small Continuation Format}}
+
+\def\thebibliography#1{%\subsection*{C. Selected peer-reviewed publications}
+\list
+ {\arabic{enumi}.}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+% \def\newblock{\hskip .11em plus .33em minus .07em}%
+ \def\newblock{\hskip .07em}
+ \sloppy\clubpenalty4000\widowpenalty4000
+ \sfcode`\.=5000\relax}
+\let\endthebibliography=\endlist
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\pagestyle{fancy}
+\pagestyle{empty}
+
+
+%\setlength\extrarowheight{40pt}
+\renewcommand{\arraystretch}{1.4}
+\noindent
+\begin{tabular}[h]{p{2.8in}|c|p{0.75in}|l} \hline 
+%    \multicolumn{4}{c}{}\\
+    \multicolumn{4}{c}{\textbf{BIOGRAPHICAL SKETCH}}\\
+    \multicolumn{4}{p{\columnwidth}}
+    {\centering{\footnotesize Provide the following information for the
+  Senior/key personnel and other significant contributors\\
+  Follow this format for each person   
+  \uppercase{DO NOT EXCEED FIVE PAGES}}} \\
+%  \multicolumn{4}{c}{}\\ 
+\hline
+ \multicolumn{1}{l}{NAME:} & \multicolumn{3}{l}{\myname} \\ \hline
+\multicolumn{1}{l}{eRA COMMONS USER NAME:} & 
+                  \multicolumn{3}{l}{\eraname} \\ \hline
+\multicolumn{1}{l}{POSITION TITLE:} & \multicolumn{3}{l}{\mytitle} \\ \hline
+\multicolumn{4}{p{\columnwidth}}{ EDUCATION/TRAINING 
+  (Begin with baccalaureate
+  or other initial professional education, such as nursing, and include
+  postdoctoral training and residency training if applicable.
+  Add/delete rows as necessary.)} \\ \hline
+\multicolumn{1}{c|}{ \uppercase{Institution and location}} & 
+\multicolumn{1}{p{1 in}|}{\centering \uppercase{Degree} (if applicable)} & 
+\multicolumn{1}{p{.75 in}|}{\centering Completion Date  MM/YYYY} & 
+\multicolumn{1}{c}{\ \uppercase{Field of Study}} \\ \hline
+Dalhousie University, Halifax, N.S., Canada & BSc & \centering{1979} & 
+ Engineering Physics\\
+Technische Universit\"at Graz, Graz, Austria & MSc & \centering{1985} & 
+ Electrical Engineering \\
+Dalhousie University, Halifax, N.S., Canada & Ph.D. & \centering{1990} & 
+Physiology \& Biophysics \\
+CVRTI, University of Utah, Salt Lake City, Utah & Postdoctoral & 
+\centering{1992} & Electrophysiology \\
+\hline	
+
+\end{tabular}
+\renewcommand{\arraystretch}{1.0}
+
+%\vspace{-.2in}
+
+\subsection*{A. Personal Statement}
+
+I have over 30 years of experience in basic and translational cardiac
+electrophysiology, biomedical simulation, image based modeling, and
+visualization.  My approaches include human and animal experimental studies
+using a wide range of technologies, especially multichannel measurement of
+electrical signals, image analysis, image based modeling, and numerical
+techniques for large scale computations.  For 13 years I have been the
+co-director of an NIH funded Center for Integrated Biomedical Computing
+(CIBC), in which we develop open source software for use by a range of
+biomedical scientists and engineers.  One focus of my recent research is on
+all aspects of atrial fibrillation detection, evaluation, and treatment and
+our software has had a major impact in the clinical management of this
+disease.  My current research funding is over \$600,000 per year and I
+mentor 5 PhD students, a post doctoral fellow, 10 undergraduates, and
+several software developers. I have extensive past experience mentoring
+over 20 graduate students, post doctoral fellows, and junior faculty and am
+the Vice-chair and Director of Undergraduate Studies in Bioengineering.
+This proposal for Ravi Ranjan builds directly on all this research and
+mentorship experience and is the ideal next step after Ravi's successful K
+award and his outstanding progress in the last three years.  I am
+enthusiastic about this opportunity, especially with the chance to continue
+to collaborate closely with Ravi.  He is an outstanding young researcher
+with unparalleled pedigree and an already outstanding track record, one
+that is advancing very nicely since his arrival in Utah.  
+
+The specific approaches in this proposal match very well my own expertise
+and the well established capabilities at the University of Utah. There
+exists deep expertise and long experience in both MRI imaging (at the Utah
+Center for Advanced Imaging Research, UCAIR) and image analysis (at the
+Scientific Computing and Imaging, SCI, Institute) and in the development
+and use of high density electrocardiographic mapping techniques (at the
+Cardiovascular Research and Training Institute, CVRTI).  As Co-Director of
+the NIH/NIGMS funded Center for Integrative Biomedical Computing (CIBC), I
+have also guided the development of software that will be extremely useful
+for the proposal research, especially the image and signal analysis
+components. My role as Associate Director of both SCI and CVRTI along with
+the close collaborations with Dr. Ranjan create the uniquely ideal
+environment for the proposed research into mechanisms of persistent AF and
+improvements in ablation based management of this debilitating and costly
+condition.
+
+\noindent
+% Define the bib files to use (see \nocite command, below)
+\bibliography{strings,biglit}
+\bibliographystyle{nihunsrt}
+\nocite{RSM:Ran2014,RSM:Par2014,RSM:Ran2012,RSM:Dos2013}
+
+\subsection*{B. Positions and Honors}
+\vspace{-.1in}
+
+\noindent
+\textbf{Positions and Employment}\\
+\begin{tabular}[h]{lp{6.1in}}
+    1980--86 & Research Assistant Professor and Computer System Manager,
+    Institut f\"ur Medizinische Physik und Biophysik, Universit\"at Graz, Graz,
+    Austria \\
+    1986--90 & Graduate Research Assistant, Department of Physiology \&
+    Biophysics, Dalhousie University, Halifax, N.S., Canada, Postdoctoral
+    Research Associate, Nora Eccles Harrison Cardiovascular Research and
+    Training Institute, University of Utah School of Medicine, Salt Lake
+    City, Utah, 1990-1992 \\
+    1992--1998 & Research Assistant Professor, Nora Eccles Harrison
+    Cardiovascular Research and Training Institute, University of Utah
+    School of Medicine, Salt Lake City, Utah\\
+    1993--1997 & Research Assistant Professor, Department of
+    Bioengineering, University of Utah, Salt Lake City, Utah \\
+    1998--2003 & Assistant Professor, Department of Bioengineering,
+    University of Utah, Salt Lake City, Utah \\
+    2003--2012 & Tenured Associate Professor, Department of
+    Bioengineering, University of Utah, Salt Lake City, Utah \\
+    1999--2003 & Acting Co-Director, Cardiovascular Research and Training
+    Institute, University of Utah  \\
+    2003--present & Associate Director, Cardiovascular Research and Training
+    Institute, University of Utah \\
+    2002--present & Associate Director, Scientific Computing and Imaging
+    (SCI) Institute, University of Utah \\
+    2006--present & Associate Chair and Head of Undergraduate Studies,
+    Dept. of Bioengineering, U of Utah \\
+    2009--present & Co-founder and Associate Director Comprehensive
+    Arrhythmia Research and Management (CARMA) Center \\
+    2012--present & Full  Professor, Department of
+    Bioengineering, University of Utah, Salt Lake City, Utah \\
+\end{tabular}
+
+\noindent
+\textbf{Other Experience and Professional Memberships}\\
+\begin{tabular}[h]{lp{6.1in}}
+1990-- & Member, IEEE Engineering in Medicine and Biology Society (EMBS) \\
+1999-- & Member Biomedical Engineering Society (BMES)  \\
+2008-- & Member, Heart Rhythm Society (HRS) \\
+1999-- & International Society of Electrocardiology (ISE) \\
+2002-- & ISE International Council member\\
+1979-- & Computing in Cardiology (CinC) Society \\
+2014-- & CinC Council member \\
+1995-- & International Society of Computerized Electrocardiology\\
+1995-- & Ad hoc NIH study section member \\
+2005-- & Editorial Board, Journal of Electrocardiology\\
+\end{tabular}
+
+% \newpage
+\noindent
+\textbf{Honors}\\
+\begin{tabular}[h]{ll}
+    1975--79 & Dalhousie University Academic Scholarships\\
+    1979     & Dalhousie University Medal in Engineering Physics \\
+    1980--85 & Austrian Student Union Scholarships \\
+    1986--90 & Izaak Walton Killam Memorial Scholarship \\
+    1987--90 & Medical Research Council of Canada Studentship \\
+    1990--92 & Heart and Stroke Foundation of Canada Postdoctoral Fellowship\\
+\end{tabular}
+
+\subsection*{C. Contribution to Science)}
+
+\begin{description}
+  \item [Electrocardiographic Inverse Problems: ] I have spent my entire
+    career exploring novel approaches to inverse problems in
+    electrocardiography, \ie{} the estimation of cardiac electrical
+    activity from body-surface ECG.  I have pursued a wide variety of
+    approaches and used both computational and experimental methods to
+    develop and validate a range of approaches, and most recently have
+    applied uncertainty quantification approaches to evaluate the role of
+    parameter variation on the accuracy of the resulting solutions to the
+    forward and inverse problems.
+    
+    \begin{enumerate}
+      \item M. Milanic and V. Jazbinsek and R.S. MacLeod and D.H. Brooks
+        and R. Hren. Assessment of regularization techniques for
+        electrocardiographic imaging in \emph{J Electrocardiol}
+        47(1):20--28, 2014. PMCID: PMC4154607.
+
+      \item D. Wang, R.M. Kirby, R.S. MacLeod, and C.R. Johnson. Inverse
+        electrocardiographic source localization of ischemia: An
+        optimization framework and finite element
+        solution. \emph{J. Comp. Phys.}  250:403--424, 2013.  PMCID:
+        PMC3727301
+
+      \item D.J. Swenson, S.E. Geneser, J.G. Stinstra, R.M. Kirby, and
+        R.S. MacLeod. Cardiac Position Sensitivity Study in the
+        Electrocardiographic Forward Problem Using Stochastic Collocation
+        and BEM. \emph{Ann. Biomed. Eng.}, 39(12):2900--2910, 2011. PMCID:
+        PMC3362042.
+
+      \item Y. Serinagaoglu, D.H. Brooks, and R.S. MacLeod. Improved
+        performance of Bayesian solutions for inverse electrocardiography
+        using multiple information sources. \emph{ IEEE
+          Trans. Biomed. Eng.} 53(2):2024--2034, 2006.
+    \end{enumerate}
+
+  \item [Image based biomedical modeling:] This research direction stemmed
+    from the recognition of the absence of tools for conducting patient
+    specific, imaged based modeling and simulation of physiology.  To
+    extend and make openly available the tools we have developed for the
+    purpose, we have received NIH support since 1999 and now release a
+    complete pipeline of software for image based modeling and simulation.
+    We conduct courses each year (some under separate NIH funding) and have
+    identified over 300 publications from researchers who use our software
+    and techniques for their research.
+
+    \begin{enumerate}
+      \item J. Blauer, D.J. Swenson, K. Higuchi, G. Plank, R. Ranjan,
+        N. Marrouche, and R.S. MacLeod. Sensitivity and Specificity of
+        Substrate Mapping: an in silico Framework for the Evaluation of
+        Electroanatomical Substrate Mapping Strategies in
+        \emph{J. Cardiovasc. Electrophys.} 25(7): 774--780, 2014.  PMCID:
+        PMC4107007. 
+      \item B.M. Isaacson, J.G. Stinstra, R.D. Bloebaum, COL P.F. Pasquina,
+        and R.S. MacLeod. Establishing Multiscale Models for Simulating
+        Whole Limb Estimates of Electric Fields for Osseointegrated
+        Implants.  \emph{IEEE Trans. Biomed. Eng.} Oct;58(10):2991--4,
+        2011.  PMCID: PMC3179554. 
+      \item R.S. MacLeod, J.G. Stinstra, S. Lew, R.T.  Whitaker,
+        D.J. Swenson, M.J. Cole, J. Kruger, D.H. Brooks, and
+        C.R. Johnson. "Subject-specific, multiscale simulation of
+        electrophysiology: a software pipeline for image-based models and
+        application examples.  \emph{Phil. Trans.  Royal Soc.}
+        367(1896):2293--2310, 2009. PMCID: PMC2696107.
+      \item S.E. Geneser, R.M. Kirby, and R.S. MacLeod. Application of
+        Stochastic Finite Element Methods to Study the Sensitivity of ECG
+        Forward Modeling to Organ Conductivity, In \emph{IEEE Transactions
+          on Biomedical Engineering}, 55(1):31--40, 2008.  
+    \end{enumerate}
+
+  \item [Simulation of cardiac arrhythmias and defibrillation: ] We have
+    conducted, in collaboration with physicians and other simulation
+    researchers, studies based on simulation of both cardiac arrhythmias
+    and the therapeutic management of their extreme forms through
+    defibrillation. Our arrhythmia simulations focus on identifying the
+    role of abnormal tissue substrate in supporting tachycardia and
+    fibrillation. The goals of our defibrillation studies have focused on
+    optimizing electrode and device placement in order to minimize energy
+    needs while achieving successful defibrillation. 
+
+    \begin{enumerate}
+      \item K.S. McDowell, S.S. Zahid, F. Vadakkumpadan, J.  Blauer,
+        R.S. MacLeod, and N.A. Trayanova.  Virtual Electrophysiological
+        Study of Atrial Fibrillation in Fibrotic Remodeling, \emph{PLoS
+          ONE},10(2), 2015.  PMCID: PMC4333565.
+      \item K.S. McDowell, F. Vadakkumpadan, R. Blake, J.  Blauer,
+        G. Plank, R.S. Macleod, and N.A. Trayanova.  Mechanistic inquiry
+        into the role of tissue remodeling in fibrotic lesions in human
+        atrial fibrillation. \emph{Biophys. J.} 104(12):2764--2773, 2013.
+        PMCID: PMC3686346. 
+      \item M. Jolley, J. Stinstra, J. Tate, S. Pieper, R. Macleod, L. Chu,
+        P. Wang, and J.K. Triedman.  Finite element modeling of
+        subcutaneous implantable defibrillator electrodes in an adult
+        torso.  \emph{Heart Rhythm.} 7(5):692--698, 2010. PMCID:
+        PMC3103844.
+      \item B. Taccardi, B.B. Punske, E. Macchi, R.S. MacLeod,
+        P.R. Ershler.  Epicardial and Intramural Excitation During
+        Ventricular Pacing: Effect of Myocardial Structure. \emph{Am J
+          Physiol Heart Circ Physiol} April 294(4), H1753--1766, 2008.
+    \end{enumerate}
+
+  \item [Electrocardiology of acute ischemia:] Myocardial ischemia remains
+    a leading cause of mortality and morbidity and has been a physiological
+    focus of my research career.  We have applied inverse
+    electrocardiography (ECG Imaging) to identify and localize ischemia in
+    humans; we have carried out animal research studies to characterize
+    the electrical changes induced by ischemia at the tissue and whole
+    heart scale; we have proposed novel concepts of the location of acute
+    ischemia and its evolution over time that contradict long held
+    beliefs. 
+    \begin{enumerate}
+      \item K. Aras, B. Burton, D. Swenson, and R. MacLeod, Sensitivity of
+        epicardial electrical markers to acute ischemia detection.
+        \emph{J. Electrocardiol.} 47(6): 836-41, 2014.  PMCID: PMC4252649.
+      \item S, Shome, R.L. Lux, B.B. Punske, and R.S. MacLeod.  Ischemic
+        preconditioning protects against arrhythmogenesis through
+        maintenance of both active as well as passive electrical properties
+        in ischemic canine hearts. \emph{J Electrocardiol.} 40(6):S150-9,
+        2007.
+      \item Shibaji Shome and Rob MacLeod. Characterization of the
+        transmural myocardial electrocardiographic response in in vivo
+        canine working hearts under reduced flow and increased heart rate
+        \emph{J Electrocardiol.}  40(4):S5-6, 2007.
+      \item J.G. Stinstra, S. Shome, B. Hopenfeld, R.S. MacLeod. Modeling
+        the passive cardiac conductivity during
+        ischemia. \emph{Med. Biol. Eng.  Comput.} 43(6): 776-782, 2005.
+    \end{enumerate}
+
+  \item [Image analysis for cardiac arrhythmias:] MRI imaging approaches
+    have made enormous progress in evaluating the substrate changes that
+    arise in patients suffering from cardiac arrhythmias. We have developed
+    novel approaches to analyze cardiac MRI in patients with atrial
+    fibrillation, including the ability to predict treatment outcome and
+    thus guide clinical management of this very common arrhythmia.  Ongoing
+    studies are expanding these capabilities to evaluate the effectiveness
+    of ablation strategies and determine the mechanistic relationships
+    between tissue pathology and the nature of the resulting arrhythmias. 
+
+    \begin{enumerate}
+      \item B.R. Parmar, T.R. Jarrett, N.S. Burgon, E.G. Kholmovski,
+        N.W. Akoum, N. Hu, R.S. MacLeod, N.F. Marrouche, and
+        R. Ranjan. Comparison of Left Atrial Area Marked Ablated in
+        Electroanatomical Maps with Scar in MRI \emph{J
+          Cardiovasc. Electrophys.} 25(5):457--463, 2014. PMCID:
+        PMC4090328.
+      \item C. McGann, N. Akoum, A. Patel, E.  Kholmovski, P. Revelo,
+        K. Damal, B. Wilson, J.  Cates, A. Harrison, R. Ranjan,
+        N.S. Burgon, T. Greene, D. Kim, E.V.R. DiBella, D. Parker,
+        R.S. MacLeod, and N.F. Marrouche.  Atrial Fibrillation Ablation
+        Outcome Is Predicted by Left Atrial Remodeling on MRI. \emph{Circ A
+          \& E}, Feb 1;7(1):23-30, 2014.  PMCID: PMC4086672. 
+      \item R. Karim, Y. Gao, A. Tannenbaum, D.  Rueckert, J. Cates,
+        T. Schaeffter, D. Peters, R.S. MacLeod, and K. Rhode.  Evaluation
+        of current algorithms for segmentation of scar tissue from late
+        Gadolinium enhancement cardiovascular magnetic resonance of the
+        left atrium: an open-access grand challenge. \emph{J Cardiovasc
+          Magn Reson} 15:105, 2013.  PMCID: PMC3878126.
+
+      \item N. Akoum; C. McGann; G. Vergara; T. Badger; R. Ranjan;
+        C. Mahnkopf; E. Kholmovski, R.S. MacLeod and N.F.
+        Marrouche. Atrial Fibrosis Quantified Using Late Gadolinium
+        Enhancement MRI is Associated with Sinus Node Dysfunction Requiring
+        Pacemaker Implant. \emph{J. Cardiovasc. Electrophys.} 23(1):44-50,
+        2012.
+
+    \end{enumerate}
+
+  \item[List of Published Work:] To see a full list of my publications,
+    please visit the SCI Institute publications cite (and carry out a
+    search for ``MacLeod'') at \url{http://www.sci.utah.edu/scipubs.html}.
+
+\end{description}
+
+
+\subsection*{D. Research Support}
+
+
+\subsubsection*{Ongoing Research Support}
+
+\noindent
+\parbox{\columnwidth}{
+2 P41 RR12553 (Johnson) Date: 9/1/15--8/30/2020\\
+NIH/NCRR Center for Integrated Biomedical Computation\\
+Role: Co-PI \\
+This Center is national research resource (P-41) that has existed since
+1999. The goals of the current edition are to address biomedical research
+problems in bioelectric fields, imaged-based anatomy, multi-scale tissue
+modeling and simulation, and scientific visualization. We will accomplish
+these goals by creating state-of-the- art computational techniques and
+innovative, well-engineered software, which, in combination with and freely
+distributed to the science community, will significantly advance biomedical
+computing research.}
+
+
+\medskip
+
+\noindent
+\parbox{\columnwidth}{
+  British Heart Foundation PG/15/8/31130 (Aslanidi) Date:
+  5/1/2015--4/30/2018\\ 
+  Dissecting multifactorial mechanisms of atrial fibrillation: Predictive
+  modelling framework for evaluating medical treatments \\
+  Role: Co-Investigator \\
+  This project will investigate AF genesis and treatments using in silico
+  3D canine atria models validated by canine experimental models of AF. The
+  3D atria models will integrate major structural and functional factors
+  associated with AF − fibrosis, innervation and electrical
+  remodelling. They will be applied to dissect (i) multifactorial
+  mechanisms of electrical activations sustaining AF, (ii) typical
+  locations of electrical drivers during AF progression, and (iii) optimal
+  drug and ablation treatments that can terminate various AF
+  scenarios. Model predictions will be applied for evaluating key factors
+  underlying successful treatments in two retrospective cohorts of AF
+  patients. Hence, the genesis of predictive models in silico will assist
+  in evaluating medical strategies.}
+
+
+\medskip
+
+\noindent
+\parbox{\columnwidth}{
+No ID Number (MacLeod)  Date: 7/1/13--6/30/17\\
+Nora Eccles Treadwell Foundation \\
+Role: PI\\
+Title: Electrocardiographic Characterization of Myocardial Ischemia \\
+The overarching goal of this research is to recognize and diagnose all
+forms of myocardial ischemia using the ECG.  The overarching hypothesis of
+this project is that current electrocardiographic descriptions of
+myocardial ischemia are incomplete and that, as a result, the clinical
+interpretation of the electrocardiogram fails to achieve its potential as a
+diagnostic and monitoring approach.  We seek, therefore, through
+measurements, experiments, and simulations to achieve the most complete
+understanding possible of the full spectrum of ischemia in terms of its
+bioelectric source, its electrical interaction with surrounding tissues,
+and its reflection on the body surface.}
+
+\medskip
+
+\noindent
+\parbox{\columnwidth}{
+  R25GM107009-01 (MacLeod, Weiss, Whitaker)  Date: 7/1/2013--6/30/2016\\
+  Image Based Modeling, Simulation, and Visualization
+  Summer Course for Biomedical Researchers\\
+  Role: Co-PI\\
+  The goal of this proposed program is to expand the scope of current
+  Center for Integrative Biomedical Computing (CIBC) and Muskuloskeletal
+  Research Lab (MRL) training to create a dedicated two-week course in the
+  area of image based modeling and simulation applied to bioelectricity and
+  biomechanics.}
+
+\medskip
+
+\noindent
+\parbox{\columnwidth}{
+  R25GM107009-01 (Aylward, Cates)  Date: 7/1/2013--6/30/2016\\
+  WEB-Based Infrastructure for Comparison and
+  Validation of Image Computing Methods\\
+  Role: Co-Investigator\\
+  The goal of this project is to develop the infrastructure for and deploy
+  a commercial installation of an Algorithm Evaluation Service (AES) to
+  help bridge the gap between algorithm researchers and commercial product
+  developers. We will  support a novel
+  mechanism for algorithm submission based on virtual machine technology
+  that addresses clinical integration, security, and computational resource
+  scalability to support extensive testing. We will  make
+  the submission of algorithms to  challenges an inherent and effortless
+  part of algorithm development for researchers. We will validate
+  the resulting system using additional grand challenges, and we will
+  deliver it to and receive feedback from our first commercial customer as
+  part of the proposed work.}
+
+\medskip
+
+\noindent
+\parbox{\columnwidth}{
+  Siemens Medical Solutions (MacLeod)  Date: 09/12/2012--12/31/2015\\
+  Overlay and registration of MRI-derived scar maps to real-time
+  fluoroscopy for repeat atrial fibrillation (AF) ablation\\
+  Role: PI\\
+  This is an industry funded project to develop a means to merge previously
+  acquire MRI images and content derived from those images with real time
+  fluoroscopy displays in the catheterization laboratory for atrial
+  ablation treatments. The goal of the project will be to develop a
+  combination of custom and available software tools that will perform all
+  the necessary steps of registering (aligning) the scar map with
+  fluoroscopic images captured from fluoroscopy performed as part of a
+  repeat ablation procedure.  }
+
+
+\noindent
+\subsubsection*{Recently Completed Research Support}
+
+\noindent
+\parbox{\columnwidth}{
+2 P41 RR12553 (Johnson) Date: 9/1/2010--8/30/2015\\
+NIH/NCRR Center for Integrated Biomedical Computation\\
+Role: Co-Investigator and Center Co-director \\
+This Center is national research resource (P-41) that has existed since
+1999. The goals of the current edition are to address biomedical research
+problems in bioelectric fields, imaged-based anatomy, multi-scale tissue
+modeling and simulation, and scientific visualization. We will accomplish
+these goals by creating state-of-the- art computational techniques and
+innovative, well-engineered software, which, in combination with and freely
+distributed to the science community, will significantly advance biomedical
+computing research.}
+
+\medskip
+
+\noindent
+\parbox{\columnwidth}{
+U54E B005149-06 (Kikinis)  Date: 10/1/10--9/30/14\\
+NIH/Roadmap Initiative National Alliance for Medical Image Computing: DBP
+Atrial Fibrillation\\
+Role: Co-Investigator and DBP PI\\
+NA-MIC is a multi-institutional, interdisciplinary team of computer
+scientists, software engineers, and medical investigators who develop
+computational tools for the analysis and visualization of medical image
+data. The purpose of the Center is to provide the infrastructure and
+environment for the development of computational algorithms and open-source
+technologies, and then oversee the training and dissemination of these
+tools to the medical research community.}
+
+
+\end{document}
